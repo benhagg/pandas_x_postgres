@@ -37,8 +37,8 @@ df['column'] = df['product'].map(productCategoriesDict)
 
 # Create a connection to the database
 database_name = "is303"
-db_user = "is303user"
-db_password = "12345classpassword"
+db_user = ''
+db_password = ''
 db_host = "localhost" #this just means the database is stored on your own computer
 db_port = "5432" # default setting
 
