@@ -45,4 +45,5 @@ db_port = "5432" # default setting
 engine = sqlalchemy.create_engine(f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{database_name}')
 
 df.to_sql('retail_sales', engine, if_exists='replace', index=False)
+print('you have imported your dataframe into the postgres database')
 # check pgadmin4 to see what happened:
