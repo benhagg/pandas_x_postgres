@@ -47,3 +47,33 @@ engine = sqlalchemy.create_engine(f'postgresql://{db_user}:{db_password}@{db_hos
 df.to_sql('retail_sales', engine, if_exists='replace', index=False)
 print('you have imported your dataframe into the postgres database')
 # check pgadmin4 to see what happened:
+
+conn = engine.connect()
+
+# Part II
+# step 1
+print()
+print("The following are all the categories that have been sold:") 
+
+# steop 2
+query = "SELECT DISTINCT category FROM retail_sales"
+
+df_category = pd.read_sql_query(query, engine)
+
+for i, category in enumerate(df_category['category'], start = 1):
+    print(f"{i}. {category}") 
+
+# step 3
+category_dictionary = {"Electronics" : "1", "Accessories" : "2", "Groceries" : "3", "Stationery" : "4", "Clothing" : "5"}
+input_number = int((input("Please enter the number of the category you want to see summarized: ")))
+
+# part 4
+if input_number == 1:
+#     total_sales_query = "SELECT SUM(sales) AS total_sales FROM retail_sales WHERE category = 'Electronics'"
+#     result = conn.execute(total_sales_query)
+        total_sales_query = "SELECT SUM(sales) AS total_sales FROM retail_sales WHERE category = 'Electronics'"
+        result = conn.execute(total_sales_query)
+
+        for row in result:
+                print(row)
+    
