@@ -62,23 +62,23 @@ elif user_input == 2:
     query = "SELECT DISTINCT category FROM sale"
 
     df_category = pd.read_sql_query(query, engine)
-
     for i, category in enumerate(df_category['category'], start = 1):
         print(f"{i}. {category}") 
 
     # step 3
-    category_dictionary = {"Electronics" : "1", "Accessories" : "2", "Groceries" : "3", "Stationery" : "4", "Clothing" : "5"}
+#     category_dictionary = {"Electronics" : "1", "Accessories" : "2", "Groceries" : "3", "Stationery" : "4", "Clothing" : "5"}
+        category_dictionary = {1:'Technology', 2:'Accessories', 3:'Household Items', 4:'Stationery', 5:'Apparel'}
     category_number = int((input("Please enter the number of the category you want to see summarized: ")))
 
     # step 4
-    category_selected = list(category_dictionary.keys())[list(category_dictionary.values()).index(str(category_number))]
-
+    #category_selected = list(category_dictionary.keys())[list(category_dictionary.values()).index(str(category_number))]
+    category_selected = category_dictionary[category_number]
     query = f"SELECT * FROM sale WHERE category = '{category_selected}'"
     df_selected_category = pd.read_sql_query(query, engine)
 
     # filter the dataframe for the selected category
-    df_filtered = df_selected_category.query(f"category == '{category_selected}'")
-
+    df_filtered = df_selected_category.query(f"category == '{category_selected}';")
+    
     # calculate the sum of total sales, the average sale amount, and the total units sold
     total_sales_sum = df_filtered["total_price"].sum()
     average_sale_amount = df_filtered["total_price"].mean()
