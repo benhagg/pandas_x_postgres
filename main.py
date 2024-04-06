@@ -1,4 +1,3 @@
-
 import pandas as pd
 import sqlalchemy
 import matplotlib.pyplot as plot
