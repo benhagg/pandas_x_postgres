@@ -1,3 +1,5 @@
+# Program to sort and summarize store data
+# Team members: Ben Haggard, Ryan Briggs, Josh Gillespie
 import pandas as pd
 import sqlalchemy
 import matplotlib.pyplot as plot
